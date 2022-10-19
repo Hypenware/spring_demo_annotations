@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,11 +20,17 @@ public class FileFortuneService implements FortuneService {
 
 	// create a random number generator
 	private Random myRandom = new Random();
-
+	
 	public FileFortuneService() {
+		System.out.println("FileFortuneService:Inside default constructor");
+	}
+	
+	@PostConstruct
+	public void ReadFile() {
 
 		File theFile = new File(fileName);
 		
+		System.out.println("FileFortuneService: Inside init method");
 		System.out.println("Reading fortunes from file: " + theFile);
 		System.out.println("File exists: " + theFile.exists());
 		
